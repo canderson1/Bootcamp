@@ -13,6 +13,7 @@ def maf2vcf(F_IN, F_OUT):
       vcf.write('##INFO=<ID=GENE,Type=String,Description="Hugo gene annotation">\n##INFO=<ID=TYPE,Type=String,Description="Variant classification annotation">\n##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">\n')
     elif line.startswith("Hugo_Symbol"):
       print "vcf header"
+	print "Charlotte is crazy!"
       vcf.write("#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE\n")
     else:
       #print len(line.split("\t"))
