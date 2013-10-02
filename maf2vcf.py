@@ -12,8 +12,8 @@ def maf2vcf(F_IN, F_OUT):
       vcf.write('##FILTER=<ID=File1Only,Description="Variant was called with qSNP">\n##FILTER=<ID=File2Only,Description="Variant was called with GATK">\n##FILTER=<ID=BothFiles,Description="Variant was called with qSNP and GATK">\n')
       vcf.write('##INFO=<ID=GENE,Type=String,Description="Hugo gene annotation">\n##INFO=<ID=TYPE,Type=String,Description="Variant classification annotation">\n##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">\n')
     elif line.startswith("Hugo_Symbol"):
-      print "vcf header"
-	print "Charlotte is crazy!"
+      #print "vcf header"
+      #print "Charlotte is crazy!"
       vcf.write("#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE\n")
     else:
       #print len(line.split("\t"))
@@ -30,10 +30,10 @@ def maf2vcf(F_IN, F_OUT):
 	vcf.write("%s\t%s\t%s\t%s\t%s\t.\t%s\tGENE=%s;TYPE=%s\tGT\t%s\n" % (Chromosome, Start_Position, dbSNP_RS, Reference_Allele, Tumor_Seq_Allele2, CompareStatus, Hugo_Symbol, Variant_Classification, gt))
       
       elif Reference_Allele == Tumor_Seq_Allele2:
-	print Chromosome, Start_Position, dbSNP_RS, Reference_Allele, Tumor_Seq_Allele1, ".", CompareStatus, "GENE="+Hugo_Symbol+";TYPE="+Variant_Classification, "GT", gt
+	#print Chromosome, Start_Position, dbSNP_RS, Reference_Allele, Tumor_Seq_Allele1, ".", CompareStatus, "GENE="+Hugo_Symbol+";TYPE="+Variant_Classification, "GT", gt
 	vcf.write("%s\t%s\t%s\t%s\t%s\t.\t%s\tGENE=%s;TYPE=%s\tGT\t%s\n" % (Chromosome, Start_Position, dbSNP_RS, Reference_Allele, Tumor_Seq_Allele1, CompareStatus, Hugo_Symbol, Variant_Classification, gt))
 
-      elif Reference_Allele != Tumor_Seq_Allele3 and Reference_Allele != Tumor_Seq_Allele2 and Tumor_Seq_Allele1 == Tumor_Seq_Allele2:
+      elif Reference_Allele != Tumor_Seq_Allele1 and Reference_Allele != Tumor_Seq_Allele2 and Tumor_Seq_Allele1 == Tumor_Seq_Allele2:
 	#print Chromosome, Start_Position, dbSNP_RS, Reference_Allele, Tumor_Seq_Allele1, ".", CompareStatus, "GENE="+Hugo_Symbol+";TYPE="+Variant_Classification, "GT", gt
 	vcf.write("%s\t%s\t%s\t%s\t%s\t.\t%s\tGENE=%s;TYPE=%s\tGT\t%s\n" % (Chromosome, Start_Position, dbSNP_RS, Reference_Allele, Tumor_Seq_Allele1, CompareStatus, Hugo_Symbol, Variant_Classification, gt))
 
